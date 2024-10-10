@@ -1,0 +1,85 @@
+.site-layout-background {
+    background: #f5f5f5;
+}
+
+.header {
+    background: #009688; /* Alibaba green */
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.product-card {
+    border-radius: 8px; /* Rounded corners */
+    transition: box-shadow 0.3s; /* Smooth transition */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items horizontally */
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333; /* Darker text for product name */
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px; /* Space above details */
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #b12704; /* Alibaba red for price */
+}
+
+.product-quantity {
+    font-size: 14px;
+    color: #555; /* Slightly lighter gray for quantity */
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between; /* Space buttons evenly */
+}
+
+/* Center the image */
+.image-container {
+    display: flex; /* Enable flexbox for the image container */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    width: 100%; /* Make it full width of the card */
+    height: 200px; /* Set a height for the image container */
+}
+
+.product-card img {
+    max-width: 100%; /* Ensure the image fits within the card */
+    max-height: 500px; /* Set a maximum height for the image */
+    object-fit: cover; /* Maintain aspect ratio while covering */
+    margin: 0 auto; /* Center image horizontally */
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 576px) {
+    .product-card {
+        margin-bottom: 16px; /* Space below each card */
+    }
+}

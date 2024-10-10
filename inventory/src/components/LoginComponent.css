@@ -1,0 +1,48 @@
+/* src/LoginComponent.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5; /* Light grey background */
+  }
+  
+  .login-card {
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white; /* Card background */
+  }
+  
+  .ant-card-title {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    color: #1890ff; /* Ant Design's primary blue */
+  }
+  
+  .ant-form-item-label > label {
+    font-size: 16px;
+    color: #595959; /* Darker grey for labels */
+  }
+  
+  .ant-input {
+    border-radius: 5px; /* Rounded input fields */
+  }
+  
+  .ant-btn-primary {
+    background-color: #1890ff; /* Ant Design primary color */
+    border-color: #1890ff;
+    border-radius: 5px;
+  }
+  
+  .ant-btn-primary:hover {
+    background-color: #40a9ff; /* Hover color */
+    border-color: #40a9ff;
+  }
+  
+  .ant-form-item {
+    margin-bottom: 16px; /* Add spacing between form items */
+  }
+  

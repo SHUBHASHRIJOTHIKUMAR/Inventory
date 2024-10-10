@@ -1,0 +1,75 @@
+// api/orderRoutes.js
+
+const express = require('express');
+const sql = require('mssql');
+
+const router = express.Router();
+
+// Database configuration
+const dbConfig = {
+    server: 'PSGST-SHUBHA', // Your SQL Server instance name
+    database: 'Inventory', // The name of your database
+    options: {
+        encrypt: false,
+        trustServerCertificate: true,
+    },
+    authentication: {
+        type: 'ntlm',
+        options: {
+            domain: 'PSGST-SHUBHA',
+            userName: 'PSG',
+            password: 'shubha22',
+        },
+    },
+};
+
+// Connect to SQL Server
+let pool;
+
+const connectToDatabase = async () => {
+    try {
+        pool = await sql.connect(dbConfig);
+        console.log('Connected to database');
+    } catch (error) {
+        console.error('Database connection failed:', error);
+    }
+};
+
+// Call the function to connect
+connectToDatabase();
+
+// Place Order API
+router.post('/placeorder', async (req, res) => {
+    const { item_id, quantity } = req.body;
+
+    // Check if the connection pool is established
+    if (!pool) {
+        return res.status(500).send('Database connection not established');
+    }
+
+    try {
+        // Call the stored procedure
+        const result = await pool.request()
+            .input('p_item_id', sql.Int, item_id)
+            .input('p_quantity', sql.Int, quantity)
+            .output('p_order_id', sql.Int) // Declare output parameter
+            .output('p_message', sql.VarChar(255)) // Declare output parameter
+            .execute('PlaceOrder'); // Call the stored procedure
+
+        // Extract the results from the stored procedure
+        const orderId = result.output.p_order_id;
+        const message = result.output.p_message;
+
+        if (message === 'Order dispatched successfully') {
+            res.status(201).json({ id: orderId, message });
+        } else {
+            res.status(400).json({ message });
+        }
+    } catch (err) {
+        console.error('SQL error placing order:', err.message || err);
+        res.status(500).json({ message: 'Database error', error: err.message });
+    }
+});
+
+// Export the router
+module.exports = router;
